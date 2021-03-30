@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+}
+.item {
+    display: inline-block;
+    margin: 5%;
+    width:40%;
+}
+.checkout{
+    display: block;
+    margin: 0 5% 100px;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    background: cornflowerblue;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}

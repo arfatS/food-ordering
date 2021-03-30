@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Item from './Item'
+import Bill from './Bill'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import data from './data'
+import './css/style.css'
+
+
+class App extends React.Component {
+    constructor(){
+        super()
+        this.state = {}
+
+        this.handleQuantity = this.handleQuantity.bind(this)
+    }
+
+    handleQuantity(e){
+        this.setState({[e.target.id] : parseInt(e.target.value)})
+    }
+
+    calculateTotal(){
+        const selected = []
+
+        data.forEach(item => {
+            if(item.id in this.state){
+                selected.push(
+                    {
+                        id : item.id,
+                        price : item.price,
+                        quantity : this.state[item.id],
+                        total :  item.price * this.state[item.id]
+                    }
+                )
+            }
+        })
+
+        return selected
+    }
+
+    render(){
+        return(
+            <div>
+                {data.map((item) =>
+                    <Item key={item.id} value={item} onQuantity={this.handleQuantity}/>
+                )}
+
+                <button className="checkout">Checkout</button> 
+
+               
+                
+                {this.calculateTotal().map((selected) => 
+                    <Bill key={selected.id} value={selected} />
+                )}
+            </div>
+            
+        )
+    }
 }
 
-export default App;
+export default App
