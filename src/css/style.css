@@ -25,6 +25,9 @@ body{
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
+    text-decoration: none;
+    color: black;
+    padding: 26px 40px;
 }
 .quantity{
     margin: 10px 0;
@@ -38,6 +41,26 @@ body{
     height: 40px;
     border-radius: 5px;
     background: rgb(230, 40, 6);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.cart{
+    margin: 100px auto;
+    text-align: center;
+    width: 30%;
+}
+.cartItem{
+    margin: 20px 0;
+}
+.clearCart{
+    display: block;
+    margin: 30px auto;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background: rgb(147, 168, 207);
     outline: none;
     border: none;
     cursor: pointer;

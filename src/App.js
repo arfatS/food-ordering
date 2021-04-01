@@ -1,16 +1,16 @@
 import React from 'react'
 import Item from './Item'
-
 import data from './data'
 import './css/style.css'
 
+import {Link} from 'react-router-dom'
 
 class App extends React.Component {
     constructor(){
         super()
         this.state = {
             quantities : {},
-            cart : []
+            cart : 0
         }
 
         this.handleQuantity = this.handleQuantity.bind(this)
@@ -28,12 +28,19 @@ class App extends React.Component {
             return alert('Please select quantity')
         }
 
-        let cart = this.state.cart
-        if(!cart.includes(id)){
-            cart.push(id)
-        }
+        // let cart = this.state.cart
+        // if(!cart.includes(id)){
+        //     cart.push(id)
+        // }
+        // this.setState({cart})
 
-        this.setState({cart})
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+        cart.push({id, quantity : this.state.quantities[id]})
+        localStorage.setItem('cart', JSON.stringify(cart))
+
+        this.setState({
+            cart : cart.length
+        })
     }
 
     render(){
@@ -43,9 +50,8 @@ class App extends React.Component {
                     <Item key={item.id} value={item} onQuantity={this.handleQuantity} onAddToCart={this.handleAddToCart}/>
                 )}
 
-                <button className="checkout">Checkout {this.state.cart.length}</button> 
+                <Link to="/cart" className="checkout">Checkout {this.state.cart}</Link> 
             </div>
-            
         )
     }
 }
