@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 body{
@@ -14,11 +15,29 @@ body{
 }
 .checkout{
     display: block;
-    margin: 0 5% 100px;
-    width: 100px;
-    height: 50px;
-    border-radius: 5px;
+    margin: 0 auto 100px;
+    width: 190px;
+    height: 80px;
+    border-radius: 15px;
     background: cornflowerblue;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+}
+.quantity{
+    margin: 10px 0;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 5px;
+}
+.addToCart{
+    float: right;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background: rgb(230, 40, 6);
     outline: none;
     border: none;
     cursor: pointer;

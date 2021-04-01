@@ -1,6 +1,5 @@
 import React from 'react'
 import Item from './Item'
-import Bill from './Bill'
 
 import data from './data'
 import './css/style.css'
@@ -9,48 +8,42 @@ import './css/style.css'
 class App extends React.Component {
     constructor(){
         super()
-        this.state = {}
+        this.state = {
+            quantities : {},
+            cart : []
+        }
 
         this.handleQuantity = this.handleQuantity.bind(this)
+        this.handleAddToCart = this.handleAddToCart.bind(this)
     }
 
-    handleQuantity(e){
-        this.setState({[e.target.id] : parseInt(e.target.value)})
+    handleQuantity(id, e){
+        let quantities = this.state.quantities
+        quantities[id] = parseInt(e.target.value)
+        this.setState({quantities})
     }
 
-    calculateTotal(){
-        const selected = []
+    handleAddToCart(id){
+        if (!this.state.quantities[id]) {
+            return alert('Please select quantity')
+        }
 
-        data.forEach(item => {
-            if(item.id in this.state){
-                selected.push(
-                    {
-                        id : item.id,
-                        price : item.price,
-                        quantity : this.state[item.id],
-                        total :  item.price * this.state[item.id]
-                    }
-                )
-            }
-        })
+        let cart = this.state.cart
+        if(!cart.includes(id)){
+            cart.push(id)
+        }
 
-        return selected
+        this.setState({cart})
     }
 
     render(){
         return(
             <div>
                 {data.map((item) =>
-                    <Item key={item.id} value={item} onQuantity={this.handleQuantity}/>
+                    <Item key={item.id} value={item} onQuantity={this.handleQuantity} onAddToCart={this.handleAddToCart}/>
                 )}
 
-                <button className="checkout">Checkout</button> 
-
-               
-                
-                {this.calculateTotal().map((selected) => 
-                    <Bill key={selected.id} value={selected} />
-                )}
+                <button className="checkout">Checkout {this.state.cart.length}</button> 
             </div>
             
         )

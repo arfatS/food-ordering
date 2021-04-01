@@ -20,7 +20,7 @@ const data = [
         price : 500 
     },
     {
-        id: 5,
+        id : 5,
         name : 'Chicken Afghani',
         price : 600
     }
