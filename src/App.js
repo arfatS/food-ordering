@@ -35,9 +35,20 @@ class App extends React.Component {
         // this.setState({cart})
 
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-        cart.push({id, quantity : this.state.quantities[id]})
+        
+        let checkInCart = false
+        cart.forEach(item => {
+            if (item.id === id) {
+                checkInCart = true
+            }
+        })
+        
+        if(!checkInCart){
+            cart.push({id, quantity : this.state.quantities[id]})
+            alert(`Item No.${id} added to cart - Quantity ${this.state.quantities[id]}`)
+        }
         localStorage.setItem('cart', JSON.stringify(cart))
-
+        
         this.setState({
             cart : cart.length
         })
